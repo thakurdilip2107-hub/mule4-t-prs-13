@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:jms="http://www.mulesoft.org/schema/mule/jms" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/jms http://www.mulesoft.org/schema/mule/jms/current/mule-jms.xsd">
+
+    <jms:config name="JMS_Config">
+        <jms:active-mq-connection brokerUrl="tcp://localhost:61616"/>
+        <jms:producer-config timeToLive="0" priority="4"/>
+    </jms:config>
+
+</mule>

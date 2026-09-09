@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:ibm-mq="http://www.mulesoft.org/schema/mule/ibm-mq" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/ibm-mq http://www.mulesoft.org/schema/mule/ibm-mq/current/mule-ibm-mq.xsd">
+
+    <ibm-mq:config name="IBM_MQ_Config">
+        <ibm-mq:connection host="localhost" port="1414" queueManager="QM1" channel="APP.CHANNEL"/>
+    </ibm-mq:config>
+
+    <flow name="inboundOrderFlow">
+        <ibm-mq:listener config-ref="IBM_MQ_Config" destination="IN.ORDER.QUEUE">
+            <ibm-mq:reconnect frequency="40000" blocking="false"/>
+        </ibm-mq:listener>
+        <logger level="INFO" message="Received order: #[payload]"/>
+    </flow>
+
+</mule>
